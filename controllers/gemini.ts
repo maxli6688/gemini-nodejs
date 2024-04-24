@@ -1,7 +1,9 @@
-const axios = require("axios");
+import { Request, Response } from "express";
+// import { GoogleGenerativeAI } from "@google/generative-ai";
+import axios from "axios";
+import constants from "../constants";
 
-const modelId = 'gemini-pro';
-const API_KEY = process.env.API_KEY || '';
+const modelId = "gemini-pro";
 /*
 https://ai.google.dev/gemini-api/docs/get-started/rest
 
@@ -15,7 +17,7 @@ client
 }
 
 */
-const generateContent = async (req, res) => {
+export const generateContent = async (req: Request, res: Response) => {
   try {
     const { messages } = req.body;
     console.log(req.body.messages);
@@ -27,13 +29,12 @@ const generateContent = async (req, res) => {
       }
     }
     // const contents = [{ parts }];
-    // console.log(contents);
+    console.log(contents);
     // res.status(200).json({ response: contents });
-
     const result = await axios.request({
-      method: "POST",
-      url: `https://generativelanguage.googleapis.com/v1beta/models/${modelId}:generateContent?key=${API_KEY}`,
-      // url: `https://generativelanguage.googleapis.com/v1beta/models?key=${constants.API_KEY}`,
+      // method: "POST",
+      url: `${constants.BASE_URL}/v1beta/models/${modelId}:generateContent?key=${constants.API_KEY}`,
+      // url: `${constants.BASE_URL}/v1beta/models?key=${constants.API_KEY}`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -42,19 +43,15 @@ const generateContent = async (req, res) => {
     const response = await result.data;
     console.log(response);
     res.status(200).json({ response });
-    const responseText = response.text();
-    res.send({ response: responseText });
+    // const responseText = response.text();
+    // res.send({ response: responseText });
   } catch (err) {
-    console.error(err);
+    console.error(err.response);
     res.status(500).json({
       // status: err.status,
-      // status: err.response.status,
-      // data: err.response.data,
+      status: err.response.status,
+      data: err.response.data,
       message: err.message,
     });
   }
-}
-
-module.exports = {
-  generateContent
-}
+};

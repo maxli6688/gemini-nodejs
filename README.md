@@ -1,10 +1,42 @@
-https://glitch.com
+# Google Gemini NodeJS .TS Api
 
-No Node version was specified; we are using default version 10. You can change this in package.json: https://help.glitch.com/hc/en-us/articles/16287495688845-What-version-of-Node-can-I-use-and-how-do-I-change-update-upgrade-it
+This project includes the boilerplate to interact with Gemini from a basic rest-api made in Node.js with Express + Typescript.
 
-node v10.24.1, with pnpm
+## Basic Requirements
 
-default version: 10.24.1
+1. Install Node.js [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
+2. Install `TypeScript`
 
+```sh
+npm install -g typescript
+```
 
-"engines": { "node": "16.x" }
+3. Install required dependencies
+
+```sh
+npm install
+```
+
+4. Get an Gemini API key: [https://makersuite.google.com/app/apikey](https://makersuite.google.com/app/apikey)
+5. Update your `.env` file with your API_KEY
+
+## Build and Run
+
+To build js from typescript source.
+
+```sh
+npm run build
+```
+
+To start the server from the compiled folder (/dist).
+
+```sh
+npm run start
+```
+
+## Demo
+
+![Demo](run.gif)
+
+## note
+first run npm run build then npm run start
