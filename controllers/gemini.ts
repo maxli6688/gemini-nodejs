@@ -32,7 +32,7 @@ export const generateContent = async (req: Request, res: Response) => {
     console.log(contents);
     // res.status(200).json({ response: contents });
     const result = await axios.request({
-      // method: "POST",
+      method: "POST",
       url: `${constants.BASE_URL}/v1beta/models/${modelId}:generateContent?key=${constants.API_KEY}`,
       // url: `${constants.BASE_URL}/v1beta/models?key=${constants.API_KEY}`,
       headers: {
