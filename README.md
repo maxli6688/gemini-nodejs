@@ -40,3 +40,5 @@ npm run start
 
 ## note
 first run npm run build then npm run start
+
+@google/generative-ai needs node 18
